@@ -14,14 +14,15 @@ use yii\web\AssetBundle;
 class TreeViewAssets extends AssetBundle
 {
 	public $css = [
+		'treeview.css'
 	];
 
 	public $js = [
+		'treeview.js'
 	];
 
 	public $depends = [
 		'yii\web\JqueryAsset',
-//-		'yii\jui\JuiAsset',
 	];
 
 	public $publishOptions = [
