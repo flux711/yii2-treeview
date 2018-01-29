@@ -27,19 +27,19 @@ use \yii\base\Widget;
  *              'caption' => 'Item 1',
  *              'label' => 'label for item 1',
  *              'collapsed' => true,
- * 
+ *
  *              // атрибуты для тега LI (здесь можно указать, например, класс для ACTIVE, значение data-id и т.д.)
- *              'itemOptions' => [], 
- * 
+ *              'itemOptions' => [],
+ *
  *              // URL иконки или FALSE если не нужна
- *              'icon' => '...', 
+ *              'icon' => '...',
  *              'url' => '...',
  *              'linkOptions' => [], // атрибуты тега A
  *              'children' => [
  *                  [...]
  *              ]
  *          ],
- * 
+ *
  *          [...]
  *      ]
  * ]);
@@ -58,7 +58,7 @@ class TreeView extends Widget
 
 		TreeViewAssets::register($view);
 
-		echo '<div id="'.$this->id.'" class="treeview">';
+		echo '<div id="'.$this->id.'" class="w-treeview">';
 		if(count($this->items) > 0)
 		{
 			echo '<ul>';
@@ -85,16 +85,16 @@ class TreeView extends Widget
 			if(!isset($item['itemOptions']['class'])) $item['itemOptions']['class'] = '';
 
 			if(!isset($item['collapsed'])) $item['collapsed'] = $this->defaultCollapsed;
-			if($item['collapsed'] == false) $item['itemOptions']['class'] .= ' treeview-expanded';
+			if($item['collapsed'] == false) $item['itemOptions']['class'] .= ' w-treeview-expanded';
 
 			if(!isset($item['children'])) $item['children'] = [];
 			if(count($item['children']) > 0)
 			{
-				$item['itemOptions']['class'] .= ' treeview-has-children';
+				$item['itemOptions']['class'] .= ' w-treeview-has-children';
 				$childrenContent = Html::tag('ul', $this->_renderLeaf($item['children']));
 			}
 
-			$label = ($item['icon'] !== false ? Html::img($item['icon'], ['class' => 'treeview-icon']) : '').Html::tag('span', $item['caption']);
+			$label = ($item['icon'] !== false ? Html::img($item['icon'], ['class' => 'w-treeview-icon']) : '').Html::tag('span', $item['caption']);
 
 			if(isset($item['url']))
 				$content .= Html::a($label, $item['url'], $item['linkOptions']);
@@ -104,7 +104,7 @@ class TreeView extends Widget
 			if(isset($item['label'])) $content .= Html::tag('span', $item['label'], ['class' => 'label label-default']);
 			$content .= $childrenContent;
 
-			$out .= Html::tag('li', Html::tag('span', '', ['class' => 'treeview-caret']).$content, $item['itemOptions']);
+			$out .= Html::tag('li', Html::tag('span', '', ['class' => 'w-treeview-caret']).$content, $item['itemOptions']);
 
 		}
 		return $out;

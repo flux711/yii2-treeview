@@ -9,17 +9,17 @@
 var treeview = {
 	init: function()
 	{
-		$('body').on('click', '.treeview .treeview-caret', function(e){
+		$('body').on('click', '.w-treeview .w-treeview-caret', function(e){
 			var caret = $(this);
 			var li = $(caret.parents('li')[0]);
 			var ul = li.find('>ul');
-			if(li.hasClass('treeview-expanded'))
+			if(li.hasClass('w-treeview-expanded'))
 			{
-				ul.stop().slideUp(300, function(){li.removeClass('treeview-expanded')});
+				ul.stop().slideUp(300, function(){li.removeClass('w-treeview-expanded')});
 			}
 			else
 			{
-				ul.stop().slideDown(300, function(){li.addClass('treeview-expanded')});
+				ul.stop().slideDown(300, function(){li.addClass('w-treeview-expanded')});
 			}
 			e.preventDefault();
 		})

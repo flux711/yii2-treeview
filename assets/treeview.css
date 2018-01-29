@@ -1,20 +1,20 @@
-.treeview ul {
+.w-treeview ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 	display: block;
 }
 
-.treeview ul ul {
+.w-treeview ul ul {
 	margin-left: 16px;
 }
 
-.treeview li {
+.w-treeview li {
 	margin: 0;
 	padding: 2px 0;
 }
 
-.treeview li .treeview-caret {
+.w-treeview li .w-treeview-caret {
 	width: 6px;
 	display: inline-block;
 	/* background-color: #FF0; */
@@ -24,29 +24,29 @@
 	border: 0 none;
 }
 
-.treeview li.treeview-has-children > .treeview-caret {
+.w-treeview li.w-treeview-has-children > .w-treeview-caret {
 	border-top: 6px solid #AAA;
 	border-left: 4px solid rgba(0, 0, 0, 0);
 	border-right: 4px solid rgba(0, 0, 0, 0);
 	border-bottom: 0 none;
 }
 
-.treeview li.treeview-has-children.treeview-expanded > .treeview-caret {
+.w-treeview li.w-treeview-has-children.w-treeview-expanded > .w-treeview-caret {
 	border-bottom: 6px solid #AAA;
 	border-left: 4px solid rgba(0, 0, 0, 0);
 	border-right: 4px solid rgba(0, 0, 0, 0);
 	border-top: 0 none;
 }
 
-.treeview li.treeview-has-children > ul {
+.w-treeview li.w-treeview-has-children > ul {
 	display: none;
 }
 
-.treeview li.treeview-has-children.treeview-expanded > ul {
+.w-treeview li.w-treeview-has-children.w-treeview-expanded > ul {
 	display: block;
 }
 
-.treeview li span.label{
+.w-treeview li span.label{
 	position: relative;
 	top: -2px;
 	margin-left: 4px;
