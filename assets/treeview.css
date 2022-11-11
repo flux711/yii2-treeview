@@ -24,20 +24,6 @@
 	border: 0 none;
 }
 
-.w-treeview li.w-treeview-has-children > .w-treeview-caret {
-	border-top: 6px solid #AAA;
-	border-left: 4px solid rgba(0, 0, 0, 0);
-	border-right: 4px solid rgba(0, 0, 0, 0);
-	border-bottom: 0 none;
-}
-
-.w-treeview li.w-treeview-has-children.w-treeview-expanded > .w-treeview-caret {
-	border-bottom: 6px solid #AAA;
-	border-left: 4px solid rgba(0, 0, 0, 0);
-	border-right: 4px solid rgba(0, 0, 0, 0);
-	border-top: 0 none;
-}
-
 .w-treeview li.w-treeview-has-children > ul {
 	display: none;
 }

@@ -7,7 +7,7 @@
  * @package
  */
 
-namespace m00nk\treeview;
+namespace flux711\treeview;
 
 use yii\web\AssetBundle;
 

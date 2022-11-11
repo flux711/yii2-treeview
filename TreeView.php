@@ -7,7 +7,7 @@
  * @package
  */
 
-namespace m00nk\treeview;
+namespace flux711\treeview;
 
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -28,13 +28,13 @@ use \yii\base\Widget;
  *              'label' => 'label for item 1',
  *              'collapsed' => true,
  *
- *              // атрибуты для тега LI (здесь можно указать, например, класс для ACTIVE, значение data-id и т.д.)
+ * 				// Attributes for the tag LI (here you can specify e.g. the class for ACTIVE, the data-id value, etc.)
  *              'itemOptions' => [],
  *
- *              // URL иконки или FALSE если не нужна
+ *              // Icon URL or FALSE if not needed
  *              'icon' => '...',
  *              'url' => '...',
- *              'linkOptions' => [], // атрибуты тега A
+ *              'linkOptions' => [], // linkOptions for attribute HTML::a
  *              'children' => [
  *                  [...]
  *              ]
@@ -91,6 +91,7 @@ class TreeView extends Widget
 			if(count($item['children']) > 0)
 			{
 				$item['itemOptions']['class'] .= ' w-treeview-has-children';
+				$item['itemOptions']['class'] .= ' far fa-plus-square';
 				$childrenContent = Html::tag('ul', $this->_renderLeaf($item['children']));
 			}
 

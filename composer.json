@@ -1,6 +1,6 @@
 {
-    "name" : "m00nk/yii2-treeview",
-    "description" : "Tree View widget",
+    "name" : "flux711/yii2-treeview",
+    "description" : "Tree View widget forked from m00nk/yii2-treeview",
     "type": "yii2-extension",
     "license": "MIT",
     "version" : "1.0.2",
@@ -8,17 +8,21 @@
         {
             "name": "Dmitrij Sheremetjev",
             "email": "m00nk1975@gmail.com"
+        },
+        {
+            "name": "Frederik Lux",
+            "email": "f.lux@phytec.de"
         }
     ],
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.4",
-        "yiisoft/yii2-jui": "2.0.*@dev"
+        "yiisoft/yii2-jui": "~2.0.0"
     },
     "autoload": {
         "psr-4": {
-            "m00nk\\treeview\\": ""
+            "flux711\\treeview\\": ""
         }
     }
 

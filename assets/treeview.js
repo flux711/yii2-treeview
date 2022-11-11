@@ -15,11 +15,15 @@ var treeview = {
 			var ul = li.find('>ul');
 			if(li.hasClass('w-treeview-expanded'))
 			{
-				ul.stop().slideUp(300, function(){li.removeClass('w-treeview-expanded')});
+				li.removeClass('far fa-plus-square');
+				li.addClass('far fa-minus-square');
+				ul.stop().slideUp(100, function(){li.removeClass('w-treeview-expanded')});
 			}
 			else
 			{
-				ul.stop().slideDown(300, function(){li.addClass('w-treeview-expanded')});
+				li.addClass('far fa-plus-square');
+				li.removeClass('far fa-minus-square');
+				ul.stop().slideDown(100, function(){li.addClass('w-treeview-expanded')});
 			}
 			e.preventDefault();
 		})
