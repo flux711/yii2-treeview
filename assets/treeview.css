@@ -3,7 +3,7 @@
 	padding: 0;
 	list-style: none;
 	display: block;
-	border-left: 1px solid lightgrey;
+	border-left: 2px solid lightgrey;
 }
 
 .w-treeview ul ul {
@@ -16,24 +16,16 @@
 }
 
 .w-treeview li .w-treeview-caret {
-	width: 8px;
-	margin: 0 12px 0 0;
+	width: 15px;
+	margin: 0 10px 0 0;
 	position: relative;
 	top: -2px;
 }
 
-/*.w-treeview li.w-treeview-has-children > ul {*/
-/*	display: none;*/
-/*}*/
-
-/*.w-treeview li.w-treeview-has-children.w-treeview-expanded > ul {*/
-/*	display: block;*/
-/*}*/
-
-/*.w-treeview li span.label{*/
-/*	position: relative;*/
-/*	top: -2px;*/
-/*	margin-left: 4px;*/
-/*	padding: .2em .6em .2em;*/
-/*	border-radius: 50px;*/
-/*}*/
+.w-treeview li span.label{
+	position: relative;
+	top: -2px;
+	margin-left: 4px;
+	padding: .2em .6em .2em;
+	border-radius: 50px;
+}

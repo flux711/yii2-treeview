@@ -10,19 +10,21 @@ var treeview = {
 	init: function()
 	{
 		$('body').on('click', '.w-treeview .w-treeview-caret', function(e){
-			var caret = $(this);
-			var li = $(caret.parents('li')[0]);
-			var ul = li.find('>ul');
+			let caret = $(this);
+			let li = $(caret.parents('li')[0]);
+			let ul = li.find('>ul');
 			if(li.hasClass('w-treeview-expanded'))
 			{
-				li.removeClass('far fa-plus-square');
-				li.addClass('far fa-minus-square');
+				let i = $(caret.children('i')[0]);
+				i.removeClass('mdi-remove-circle-outline')
+				i.addClass('mdi-add-circle-outline');
 				ul.stop().slideUp(100, function(){li.removeClass('w-treeview-expanded')});
 			}
 			else
 			{
-				li.addClass('far fa-plus-square');
-				li.removeClass('far fa-minus-square');
+				let i = $(caret.children('i')[0]);
+				i.removeClass('mdi-add-circle-outline')
+				i.addClass('mdi-remove-circle-outline');
 				ul.stop().slideDown(100, function(){li.addClass('w-treeview-expanded')});
 			}
 			e.preventDefault();
