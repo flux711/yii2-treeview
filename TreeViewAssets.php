@@ -23,6 +23,7 @@ class TreeViewAssets extends AssetBundle
 
 	public $depends = [
 		'yii\web\JqueryAsset',
+		'\\yii\\materialicons\\AssetBundle'
 	];
 
 	public $publishOptions = [

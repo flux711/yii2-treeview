@@ -94,7 +94,7 @@ class TreeView extends Widget
 			if(isset($item['label'])) $content .= Html::tag('span', $item['label'], ['class' => 'label label-default']);
 			$content .= $childrenContent;
 
-			$out .= Html::tag('li', TreeView.phpHtml::tag('span', Html::tag('i', '', ['class' => 'far fa-plus-square']), ['class' => 'w-treeview-caret']), $item['itemOptions']);
+			$out .= Html::tag('li', Html::tag('span', Html::tag('i', '', ['class' => 'far fa-plus-square']), ['class' => 'w-treeview-caret']).$content, $item['itemOptions']);
 
 		}
 		return $out;
