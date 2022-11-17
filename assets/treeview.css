@@ -7,7 +7,7 @@
 }
 
 .w-treeview ul ul {
-	margin-left: 16px;
+	margin-left: 25px;
 }
 
 .w-treeview li {
@@ -15,17 +15,30 @@
 	padding: 2px 0;
 }
 
-.w-treeview li .w-treeview-caret {
-	width: 15px;
-	margin: 0 10px 0 0;
-	position: relative;
-	top: -2px;
+.w-treeview-caret {
+	padding-right: 5px;
 }
 
-.w-treeview li span.label{
+.w-treeview li .w-treeview-caret {
+	display: inline-block;
+	position: relative;
+	top: 2px;
+}
+
+.w-treeview li span.label {
 	position: relative;
 	top: -2px;
 	margin-left: 4px;
 	padding: .2em .6em .2em;
 	border-radius: 50px;
 }
+
+.w-treeview-content {
+	border: 1px solid black;
+}
+
+.w-treeview-content-span {
+	width: 20px;
+	display: inline-block;
+}
+

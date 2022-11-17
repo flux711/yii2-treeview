@@ -14,25 +14,29 @@ use yii\materialicons\MD;
  *      'defaultCollapsed' => true,
  *      'items' => [
  *          [
- *              'caption' => 'Item 1',
+ * 				'collapsed' => true,
  *              'content' => [
- * 					'caption => 'Content of Item 1'
+ * 					'key => 'value'
  * 					'url' => '...'
  * 				],
- *              'collapsed' => true,
- *              'url' => '...',
  *              'children' => [
- *                  [...]
- *              ]
+ *              	'content' => [
+ * 						[
+ * 							'key => 'value'
+ *	 						'url' => '...'
+ * 						],
+ * 					],
+ * 					'collapsed' => true,
+ * 					'children => [...],
+ *              ],
  *          ],
  *      ]
  * ]);
  *
- * @author        Dmitrij "m00nk" Sheremetjev <m00nk1975@gmail.com>
  */
 class TreeView extends Widget
 {
-	public $items = [];
+	public $tree = [];
 
 	public $defaultCollapsed = false;
 
@@ -43,10 +47,10 @@ class TreeView extends Widget
 		TreeViewAssets::register($view);
 
 		echo '<div id="'.$this->id.'" class="w-treeview">';
-		if(count($this->items) > 0)
+		if(count($this->tree) > 0)
 		{
 			echo '<ul>';
-			echo $this->_renderLeaf($this->items);
+			echo $this->_renderLeaf($this->tree);
 			echo '</ul>';
 		}
 		echo '</div>';
@@ -57,38 +61,48 @@ class TreeView extends Widget
 	private function _renderLeaf($leaf)
 	{
 		$out = '';
-		foreach ($leaf as $item)
+		foreach ($leaf as $node)
 		{
 			$content = '';
 			$iconTag = '';
 			$childrenContent = '';
-			if(!isset($item['caption'])) continue;
 
-			$item['items'] = isset($item['items']) ? $item['items'] : [];
+			if(!isset($node['collapsed'])) $node['collapsed'] = $this->defaultCollapsed;
+			$node['itemOptions'] = [];
+			$node['itemOptions']['class'] = '';
+			if($node['collapsed'] == false) $node['itemOptions']['class'] .= ' w-treeview-expanded';
 
-			if(!isset($item['collapsed'])) $item['collapsed'] = $this->defaultCollapsed;
-			if($item['collapsed'] == false) $item['itemOptions']['class'] .= ' w-treeview-expanded';
-
-			if(!isset($item['children'])) $item['children'] = [];
-			if(count($item['children']) > 0)
+			if(!isset($node['children'])) $node['children'] = [];
+			$node['itemOptions']['hasChildren'] = false;
+			if(count($node['children']) > 0)
 			{
-				$item['itemOptions']['class'] .= ' w-treeview-has-children';
-				$iconTag = $item['collapsed'] ? MD::icon(MD::_ADD_CIRCLE_OUTLINE) : MD::icon(MD::_REMOVE_CIRCLE_OUTLINE);
-				$childrenContent = Html::tag('ul', $this->_renderLeaf($item['children']));
+				$node['itemOptions']['hasChildren'] = true;
+				$node['itemOptions']['class'] .= ' w-treeview-has-children';
+				$iconTag = $node['collapsed'] ? MD::icon(MD::_ADD_CIRCLE_OUTLINE) : MD::icon(MD::_REMOVE_CIRCLE_OUTLINE);
+				$childrenContent = Html::tag('ul', $this->_renderLeaf($node['children']));
 			}
 
-			$label = Html::tag('span', $item['caption']);
+			for ($i = 0; $i < sizeof($node['content']); $i++) {
+				if ($i != 0 || !$node['itemOptions']['hasChildren'])
+					$content .= Html::tag('span', '', ['class' => 'w-treeview-content-span']);
+				foreach ($node['content'][$i] as $key => $value) {
+					if ($key == 'url') continue;
 
-			if(isset($item['url']))
-				$content .= Html::a($label, $item['url'], $item['linkOptions']);
-			else
-				$content .= $label;
+					$label = Html::tag('span', $key.': ');
 
-			if(isset($item['label'])) $content .= Html::tag('span', $item['label'], ['class' => 'label label-default']);
+					if (isset($node['content'][$i]['url']))
+						$content .= $label.Html::a($value, $node['content'][$i]['url']);
+					else
+						$content .= $label.Html::tag('span', $value);;
+				}
+				$content .= '<br>';
+			}
+
 			$content .= $childrenContent;
 
-			$out .= Html::tag('li', Html::tag('span', $iconTag, ['class' => 'w-treeview-caret ']).$content, $item['itemOptions']);
+			$out .= Html::tag('li', Html::tag('span', $iconTag, $node['itemOptions']['hasChildren'] ? ['class' => 'w-treeview-caret '] : []).$content, $node['itemOptions']);
 		}
+
 		return $out;
 	}
 }
