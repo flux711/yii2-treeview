@@ -3,7 +3,6 @@
     "description" : "Tree View widget forked from m00nk/yii2-treeview",
     "type": "yii2-extension",
     "license": "MIT",
-    "version" : "1.0.2",
     "authors": [
         {
             "name": "Frederik Lux",
