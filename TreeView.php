@@ -21,9 +21,12 @@ use yii\materialicons\MD;
  * 				],
  *              'children' => [
  *              	'content' => [
- * 						[
- * 							'key => 'value'
- *	 						'url' => '...'
+ * 						// content can also contain an array of contents, which will be displayed as a simple space separated list
+ * 						'key' => [
+ * 							[
+ * 								'0 => 'value'
+ *	 							'url' => '...'
+ * 							],
  * 						],
  * 					],
  * 					'collapsed' => true,
@@ -85,15 +88,27 @@ class TreeView extends Widget
 			for ($i = 0; $i < sizeof($node['content']); $i++) {
 				if ($i != 0 || !$node['itemOptions']['hasChildren'])
 					$content .= Html::tag('span', '', ['class' => 'w-treeview-content-span']);
-				foreach ($node['content'][$i] as $key => $value) {
-					if ($key == 'url') continue;
 
-					$label = Html::tag('span', $key.': ');
+				$nodeContent = $node['content'][$i];
+				foreach ($nodeContent as $nodeKey => $nodeValue) {
+					if ($nodeKey == 'url') continue;
 
-					if (isset($node['content'][$i]['url']))
-						$content .= $label.Html::a($value, $node['content'][$i]['url']);
+					$label = Html::tag('span', $nodeKey.': ');
+
+					if (is_array($nodeValue)) {
+						$content .= $label;
+						for ($j = 0; $j < sizeof($nodeValue); $j++) {
+							if (isset($nodeValue[$j]['url']))
+								$content .= Html::a($nodeValue[$j][0], $nodeValue[$j]['url']);
+							else
+								$content .= Html::tag('span', $nodeValue[$j][0]);
+							$content .= ' ';
+						}
+					}
+					else if (isset($nodeContent['url']))
+						$content .= $label.Html::a($nodeValue, $nodeContent['url']);
 					else
-						$content .= $label.Html::tag('span', $value);;
+						$content .= $label.Html::tag('span', $nodeValue);
 				}
 				$content .= '<br>';
 			}
