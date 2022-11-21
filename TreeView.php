@@ -11,10 +11,11 @@ use yii\materialicons\MD;
  *
  * ```php
  * TreeView::widget([
- *      'defaultCollapsed' => true,
- *      'items' => [
+ *      'defaultCollapsed' => bool,
+ * 		'emptyMessage' => string,
+ *      'tree' => [
  *          [
- * 				'collapsed' => true,
+ * 				'collapsed' => bool,
  *              'content' => [
  * 					'key => 'value'
  * 					'url' => '...'
@@ -29,7 +30,7 @@ use yii\materialicons\MD;
  * 							],
  * 						],
  * 					],
- * 					'collapsed' => true,
+ * 					'collapsed' => bool,
  * 					'children => [...],
  *              ],
  *          ],
@@ -41,6 +42,8 @@ class TreeView extends Widget
 {
 	public $tree = [];
 
+	public $emptyMessage = '';
+
 	public $defaultCollapsed = false;
 
 	public function run()
@@ -50,11 +53,15 @@ class TreeView extends Widget
 		TreeViewAssets::register($view);
 
 		echo '<div id="'.$this->id.'" class="w-treeview">';
-		if(count($this->tree) > 0)
+		if(count($this->tree[0]) > 0)
 		{
 			echo '<ul>';
 			echo $this->_renderLeaf($this->tree);
 			echo '</ul>';
+		} else if (!empty($emptyMessage)) {
+			echo '<p>';
+			echo $this->emptyMessage;
+			echo '</p>';
 		}
 		echo '</div>';
 
