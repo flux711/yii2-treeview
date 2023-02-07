@@ -100,7 +100,7 @@ class TreeView extends Widget
 				foreach ($nodeContent as $nodeKey => $nodeValue) {
 					if ($nodeKey == 'url') continue;
 
-					$label = Html::tag('span', $nodeKey.': ');
+					$label = Html::tag('span', '<b>'.$nodeKey.'</b>: ');
 
 					if (is_array($nodeValue)) {
 						$content .= $label;
